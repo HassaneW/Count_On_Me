@@ -11,8 +11,6 @@ import XCTest
 
 class CountOnMeTests: XCTestCase {
     
-    // Tester fonction -> elements, expressionHaveEnoughElement, canAddOperator, expressionHaveResult, resolveOperation()
-    
     var calculator : CalculatorCountOnMe!
     
     override func setUp() {
@@ -23,15 +21,16 @@ class CountOnMeTests: XCTestCase {
         
     }
     
-    func testElements() {
+    func testInitialValueElements() {
+        XCTAssertEqual(calculator.elements, ["0"])
         
+        calculator.expression = "12 + 4"
         
+        XCTAssertEqual(calculator.elements, ["12","+","4"])
     }
     
     func testExpressionIsCorrect() {
-        // Given_When_Then
-        
-        // Given
+       
         calculator.expression = "+"
         calculator.expression = "-"
         
@@ -74,27 +73,24 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testValeurOneTableauElement() {
-        
-        // Tester que la 1ére valeur du tableau Element est un Int
-        
-        // Given -> Etant donné que le tableau elements n'est pas vide
-        
-        
-        // When -> Quand.... : Je crée un élément dans ce tableau (conversion de type)
-        
+       
         let operationsToReduce = calculator.elements
         var left = Int(operationsToReduce[0])!
         
         left = 10
         // Alors cette élément est un entier
         
-        XCTAssertTrue(left == 10)
+        XCTAssertEqual(left, 10)
         
     }
     
     func testValeurDeuxTableauElement() {
+        let operationsToReduce = calculator.elements
+        var left = Int(operationsToReduce[0])!
         
-        if calculator.elements.count > 1 {
+        left = 10
+        
+        if operationsToReduce.count >= 1 {
             // Tester que la 2éme valeur du tableau Element est un String
             
             let operationsToReduce = calculator.elements
@@ -103,7 +99,11 @@ class CountOnMeTests: XCTestCase {
             operand = "+"
             operand = "-"
             
-            XCTAssertTrue(operand == "+" || operand == "-")
+            XCTAssertTrue(operand == "a" || operand == "b")
+            
+        } else {
+            
+            XCTFail("Calculator Element fail")
             
         }
         
@@ -207,10 +207,36 @@ class CountOnMeTests: XCTestCase {
         
     }
     
+    func testResolveOperationWhenNotEnoughElement() {
+        
+        // Given
+        
+        calculator.expression = "23"
+        
+        // When
+        
+       let result = calculator.resolveOperation()
+        
+        // then
+        
+        XCTAssertEqual(result, ["23"])
+    }
+    
+    func testResolveOperationWhenEnoughElement() {
+        
+        // Given
+        
+        calculator.expression = "12 + 4"
+        
+        // When
+        
+         let result = calculator.resolveOperation()
+        
+        // Then
+        
+        XCTAssertEqual(result, ["16"])
+        
+    }
 }
 
 
-// tester la fonction dropFirst pas besoin de tester fonction swift
-// tester la fonction insert
-
-// Tester résultat de l'operation
