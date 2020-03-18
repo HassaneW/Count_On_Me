@@ -30,7 +30,7 @@ class CountOnMeTests: XCTestCase {
     }
     
     func testExpressionIsCorrect() {
-       
+        
         calculator.expression = "+"
         calculator.expression = "-"
         
@@ -44,7 +44,9 @@ class CountOnMeTests: XCTestCase {
     
     func testexpressionHaveEnoughElement() {
         
-        let result = calculator.elements.count >= 3
+        calculator.expression = "23"
+        
+        let result = calculator.expressionHaveEnoughElement
         
         XCTAssertFalse(result)
         
@@ -52,160 +54,26 @@ class CountOnMeTests: XCTestCase {
     
     func testCanAddOperator() {
         
-        // Given -> Etant donné que expression = +
-        calculator.expression = "+"
-        calculator.expression = "-"
+        calculator.expression = "12 4 +"
+        calculator.expression = "12 4 -"
         
-        // When -> Quand.... : Action que l'on veut tester ->  J'ajoute un operateur + en dernier element du tableau
         let result = calculator.canAddOperator
         
-        // Then -> Alors... : Situation d'arriver du test -> Ca retourne Faux
-        
         XCTAssertFalse(result)
+        
     }
     
     func testexpressionHaveResult() {
         
-        let result = calculator.expression.firstIndex(of: "=")
+        calculator.expression = "12 4 ="
         
-        XCTAssertFalse((result != nil))
+        let result = calculator.expressionHaveResult
         
-    }
-    
-    func testValeurOneTableauElement() {
-       
-        let operationsToReduce = calculator.elements
-        var left = Int(operationsToReduce[0])!
-        
-        left = 10
-        // Alors cette élément est un entier
-        
-        XCTAssertEqual(left, 10)
-        
-    }
-    
-    func testValeurDeuxTableauElement() {
-        let operationsToReduce = calculator.elements
-        var left = Int(operationsToReduce[0])!
-        
-        left = 10
-        
-        if operationsToReduce.count >= 1 {
-            // Tester que la 2éme valeur du tableau Element est un String
-            
-            let operationsToReduce = calculator.elements
-            var operand = operationsToReduce[1]
-            
-            operand = "+"
-            operand = "-"
-            
-            XCTAssertTrue(operand == "a" || operand == "b")
-            
-        } else {
-            
-            XCTFail("Calculator Element fail")
-            
-        }
-        
-    }
-    
-    func testValeurTroisTableauElement() {
-        
-        if calculator.elements.count > 2 {
-            
-            let operationsToReduce = calculator.elements
-            var right = Int(operationsToReduce[2])!
-            
-            right = 10
-            
-            XCTAssertTrue(right == 10)
-        }
-        
-    }
-    
-    func testAddition() {
-        
-        if calculator.elements.count >= 3 {
-            
-            let operationsToReduce = calculator.elements
-            var left = Int(operationsToReduce[0])!
-            
-            left = 10
-            
-            var operand = operationsToReduce[1]
-            
-            operand = "+"
-            
-            var right = Int(operationsToReduce[2])!
-            
-            right = 10
-            
-            let result: Int
-            switch operand {
-            case "+": result = left + right
-            default: fatalError("Unknown operator !")
-            }
-            
-            XCTAssertTrue(result == 20)
-            
-        }
+        XCTAssertTrue(result)
         
     }
     
     
-    func testSoustraction() {
-        
-        if calculator.elements.count >= 3 {
-            
-            let operationsToReduce = calculator.elements
-            var left = Int(operationsToReduce[0])!
-            
-            left = 20
-            
-            var operand = operationsToReduce[1]
-            
-            operand = "-"
-            
-            var right = Int(operationsToReduce[2])!
-            
-            right = 10
-            
-            let result: Int
-            switch operand {
-            case "-": result = left - right
-            default: fatalError("Unknown operator !")
-            }
-            
-            XCTAssertTrue(result == 10)
-            
-        }
-        
-    }
-    
-    func testResolveOperation() {
-        
-        if calculator.elements.count >= 3 {
-            let operationsToReduce = calculator.elements
-            var left = Int(operationsToReduce[0])!
-             left = 20
-            
-            let operand = operationsToReduce[1]
-            
-            var right = Int(operationsToReduce[2])!
-            right = 10
-            
-            let result: Int
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            default: fatalError("Unknown operator !")
-            }
-            
-            XCTAssertEqual(operand == "+", result == 30)
-            XCTAssertEqual(operand == "-", result == 10)
-        }
-        
-    }
     
     func testResolveOperationWhenNotEnoughElement() {
         
@@ -215,7 +83,7 @@ class CountOnMeTests: XCTestCase {
         
         // When
         
-       let result = calculator.resolveOperation()
+        let result = calculator.resolveOperation()
         
         // then
         
@@ -230,7 +98,7 @@ class CountOnMeTests: XCTestCase {
         
         // When
         
-         let result = calculator.resolveOperation()
+        let result = calculator.resolveOperation()
         
         // Then
         
