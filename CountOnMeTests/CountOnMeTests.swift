@@ -209,6 +209,24 @@ class CountOnMeTests: XCTestCase {
         
         XCTAssertEqual(result, ["8"])
     }
+    
+    func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnDivision() {
+           
+           calculator.expression = "12 / 4"
+           
+           let result = calculator.resolveOperation()
+           
+           XCTAssertEqual(result, ["3"])
+       }
+    
+    func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnMultiplication() {
+        
+        calculator.expression = "12 * 4"
+        
+        let result = calculator.resolveOperation()
+        
+        XCTAssertEqual(result, ["48"])
+    }
 }
 
 
