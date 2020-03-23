@@ -165,7 +165,7 @@
                                 <rect key="frame" x="20" y="791" width="374" height="63"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQU-P5-55X">
-                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="63"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="63" height="63"/>
                                         <color key="backgroundColor" red="0.46913260919999999" green="0.7149516575" blue="0.62407517239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <state key="normal" title="+">
@@ -176,7 +176,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zr-HC-0N9">
-                                        <rect key="frame" x="129.5" y="0.0" width="115" height="63"/>
+                                        <rect key="frame" x="78" y="0.0" width="62.5" height="63"/>
                                         <color key="backgroundColor" red="0.87294975829999999" green="0.37112226879999999" blue="0.32504552809999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <state key="normal" title="-">
@@ -186,8 +186,31 @@
                                             <action selector="tappedSubstractionButton:" destination="eqK-jh-KKu" eventType="touchUpInside" id="KVX-AF-NVM"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqF-GI-rl0">
+                                        <rect key="frame" x="155.5" y="0.0" width="63" height="63"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <state key="normal" title="*">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedMultiplication:" destination="eqK-jh-KKu" eventType="touchUpInside" id="ixl-8i-jcJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Fnv-EX-eRY">
+                                        <rect key="frame" x="233.5" y="0.0" width="62.5" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                        <state key="normal" title="/">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedDivision:" destination="eqK-jh-KKu" eventType="touchUpInside" id="ZKR-go-SDT"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMj-Of-bCU">
-                                        <rect key="frame" x="259.5" y="0.0" width="114.5" height="63"/>
+                                        <rect key="frame" x="311" y="0.0" width="63" height="63"/>
                                         <color key="backgroundColor" red="0.94643473759999996" green="0.64318747399999998" blue="0.12665354140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <state key="normal" title="=">

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         calculator.expression = textView.text
-     
+        
     }
     
     
@@ -35,15 +35,13 @@ class ViewController: UIViewController {
         if calculator.expressionHaveResult {
             textView.text = ""
             calculator.expression = textView.text
-
-        
+            
+            
         }
         
         textView.text.append(numberText)
         calculator.expression = textView.text
     }
-    
-    
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         if calculator.canAddOperator {
@@ -62,11 +60,33 @@ class ViewController: UIViewController {
             OperatorIsAlreadyOn()
         }
     }
-
+    
+    
+    @IBAction func tappedMultiplication(_ sender: UIButton) {
+        if calculator.canAddOperator {
+            textView.text.append(" * ")
+            calculator.expression = textView.text
+        } else {
+            OperatorIsAlreadyOn()
+        }
+    }
+    
+    
+        @IBAction func tappedDivision(_ sender: UIButton) {
+            if calculator.canAddOperator {
+                textView.text.append(" / ")
+                calculator.expression = textView.text
+            } else {
+                OperatorIsAlreadyOn()
+            }
+    
+        }
+    
+    
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
             
-         return enterCorrectExpression()
+            return enterCorrectExpression()
         }
         
         guard calculator.expressionHaveEnoughElement else {
@@ -94,13 +114,12 @@ class ViewController: UIViewController {
     }
     
     private func startNewCalculation() {
-        
         let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         return self.present(alertVC, animated: true, completion: nil)
         
     }
-
+    
 }
 
 // Créer 2 fonctions pour les messages d'erreurs
