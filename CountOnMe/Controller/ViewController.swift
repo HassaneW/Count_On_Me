@@ -12,8 +12,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
-    
+   
     let calculator = CalculatorCountOnMe()
+    
+    
+    @IBOutlet weak var buttonAddition: UIButton!
+    @IBOutlet weak var buttonSoustraction: UIButton!
+    @IBOutlet weak var buttonMultiplication: UIButton!
+    @IBOutlet weak var buttonDivision: UIButton!
+    
+   
     
     
     // View Life cycles
@@ -22,6 +30,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         calculator.expression = textView.text
+        
         
     }
     
@@ -36,51 +45,76 @@ class ViewController: UIViewController {
             textView.text = ""
             calculator.expression = textView.text
             
-            
         }
         
         textView.text.append(numberText)
         calculator.expression = textView.text
     }
     
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" + ")
-            calculator.expression = textView.text
-        } else {
-            OperatorIsAlreadyOn()
+    // Créer fonction factorisation de tous les operateurs
+    
+    func operatorFactorization(_ sender: UIButton) {
+        
+        sender.isSelected = true
+        
+        switch sender {
+        case buttonAddition:
+            if calculator.canAddOperator {
+                textView.text.append(" + ")
+                calculator.expression = textView.text
+            } else {
+                OperatorIsAlreadyOn()
+                
+            } case buttonSoustraction:
+                if calculator.canAddOperator {
+                    textView.text.append(" - ")
+                    calculator.expression = textView.text
+                } else {
+                    OperatorIsAlreadyOn()
+                    
+            } case buttonMultiplication:
+                if calculator.canAddOperator {
+                    textView.text.append(" * ")
+                    calculator.expression = textView.text
+                } else {
+                    OperatorIsAlreadyOn()
+                    
+            } case buttonDivision:
+                if calculator.canAddOperator {
+                    textView.text.append(" / ")
+                    calculator.expression = textView.text
+                } else {
+                    OperatorIsAlreadyOn()
+            }
+            
+        default:
+            break
         }
     }
     
+    @IBAction func tappedAdditionButton(_ sender: UIButton) {
+        
+        operatorFactorization(buttonAddition)
+
+    }
+    
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" - ")
-            calculator.expression = textView.text
-        } else {
-            OperatorIsAlreadyOn()
-        }
+        
+        operatorFactorization(buttonSoustraction)
     }
     
     
     @IBAction func tappedMultiplication(_ sender: UIButton) {
-        if calculator.canAddOperator {
-            textView.text.append(" * ")
-            calculator.expression = textView.text
-        } else {
-            OperatorIsAlreadyOn()
-        }
+    
+        operatorFactorization(buttonMultiplication)
+  
     }
     
     
-        @IBAction func tappedDivision(_ sender: UIButton) {
-            if calculator.canAddOperator {
-                textView.text.append(" / ")
-                calculator.expression = textView.text
-            } else {
-                OperatorIsAlreadyOn()
-            }
-    
-        }
+    @IBAction func tappedDivision(_ sender: UIButton) {
+        
+        operatorFactorization(buttonDivision)
+    }
     
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
