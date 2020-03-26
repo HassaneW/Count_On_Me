@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
-   
+    
     let calculator = CalculatorCountOnMe()
     
     
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var buttonMultiplication: UIButton!
     @IBOutlet weak var buttonDivision: UIButton!
     
-   
+    
     
     
     // View Life cycles
@@ -55,37 +55,29 @@ class ViewController: UIViewController {
     
     func operatorFactorization(_ sender: UIButton) {
         
+        guard calculator.canAddOperator == true else { return OperatorIsAlreadyOn() }
+        
         sender.isSelected = true
         
         switch sender {
         case buttonAddition:
-            if calculator.canAddOperator {
-                textView.text.append(" + ")
-                calculator.expression = textView.text
-            } else {
-                OperatorIsAlreadyOn()
-                
-            } case buttonSoustraction:
-                if calculator.canAddOperator {
-                    textView.text.append(" - ")
-                    calculator.expression = textView.text
-                } else {
-                    OperatorIsAlreadyOn()
-                    
-            } case buttonMultiplication:
-                if calculator.canAddOperator {
-                    textView.text.append(" * ")
-                    calculator.expression = textView.text
-                } else {
-                    OperatorIsAlreadyOn()
-                    
-            } case buttonDivision:
-                if calculator.canAddOperator {
-                    textView.text.append(" / ")
-                    calculator.expression = textView.text
-                } else {
-                    OperatorIsAlreadyOn()
-            }
+            textView.text.append(" + ")
+            calculator.expression = textView.text
+            
+        case buttonSoustraction:
+            
+            textView.text.append(" - ")
+            calculator.expression = textView.text
+            
+        case buttonMultiplication:
+            
+            textView.text.append(" * ")
+            calculator.expression = textView.text
+            
+        case buttonDivision:
+            
+            textView.text.append(" / ")
+            calculator.expression = textView.text
             
         default:
             break
@@ -95,7 +87,7 @@ class ViewController: UIViewController {
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         
         operatorFactorization(buttonAddition)
-
+        
     }
     
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
@@ -105,9 +97,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func tappedMultiplication(_ sender: UIButton) {
-    
+        
         operatorFactorization(buttonMultiplication)
-  
+        
     }
     
     
@@ -132,6 +124,13 @@ class ViewController: UIViewController {
         
         textView.text.append(" = \(operation.first!)")
         calculator.expression = textView.text
+    }
+    
+    
+    func factorisationErrorMessage() {
+        
+      
+        
     }
     
     private func OperatorIsAlreadyOn() {
