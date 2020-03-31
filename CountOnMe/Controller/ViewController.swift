@@ -51,16 +51,21 @@ class ViewController: UIViewController {
         calculator.expression = textView.text
     }
     
-    // Créer fonction factorisation de tous les operateurs
     
-    func operatorFactorization(_ sender: UIButton) {
+    @IBAction func tappedOperateurButton(_ sender: UIButton) {
         
-        guard calculator.canAddOperator == true else { return OperatorIsAlreadyOn() }
+        guard calculator.canAddOperator == true else {
+//            OperatorIsAlreadyOn()
+            factorisationErrorMessage(messageError: "Un operateur est déja mis !")
+            return
+        }
         
         sender.isSelected = true
         
+        // po sender.currentTitle; sender.currentTitle + case ???
         switch sender {
         case buttonAddition:
+            
             textView.text.append(" + ")
             calculator.expression = textView.text
             
@@ -71,7 +76,7 @@ class ViewController: UIViewController {
             
         case buttonMultiplication:
             
-            textView.text.append(" * ")
+            textView.text.append(" x ")
             calculator.expression = textView.text
             
         case buttonDivision:
@@ -84,40 +89,41 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-        
-        operatorFactorization(buttonAddition)
-        
-    }
     
-    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        
-        operatorFactorization(buttonSoustraction)
-    }
-    
-    
-    @IBAction func tappedMultiplication(_ sender: UIButton) {
-        
-        operatorFactorization(buttonMultiplication)
-        
-    }
-    
-    
-    @IBAction func tappedDivision(_ sender: UIButton) {
-        
-        operatorFactorization(buttonDivision)
-    }
-    
+    //    @IBAction func tappedAdditionButton(_ sender: UIButton) {
+    //
+    //        operatorFactorization(sender)
+    //
+    //    }
+    //
+    //    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
+    //
+    //        operatorFactorization(sender)
+    //    }
+    //
+    //
+    //    @IBAction func tappedMultiplication(_ sender: UIButton) {
+    //
+    //        operatorFactorization(sender)
+    //
+    //    }
+    //
+    //
+    //    @IBAction func tappedDivision(_ sender: UIButton) {
+    //
+    //        operatorFactorization(sender)
+    //    }
+    //
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
             
-            return enterCorrectExpression()
+            return factorisationErrorMessage(messageError: "Entrez une expression correcte !")
         }
         
         guard calculator.expressionHaveEnoughElement else {
             
-            return startNewCalculation()
+            return factorisationErrorMessage(messageError: "Démarrez un nouveau calcul !")
         }
         
         let operation = calculator.resolveOperation()
@@ -127,31 +133,33 @@ class ViewController: UIViewController {
     }
     
     
-    func factorisationErrorMessage() {
-        
-      
-        
-    }
+    func factorisationErrorMessage(messageError: String) {
     
-    private func OperatorIsAlreadyOn() {
-        let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "Zéro!", message: messageError, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
-    }
-    
-    private func enterCorrectExpression() {
-        let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        return self.present(alertVC, animated: true, completion: nil)
         
     }
     
-    private func startNewCalculation() {
-        let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        return self.present(alertVC, animated: true, completion: nil)
-        
-    }
+//    private func OperatorIsAlreadyOn() {
+//        let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
+//        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//        self.present(alertVC, animated: true, completion: nil)
+//    }
+//
+//    private func enterCorrectExpression() {
+//        let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
+//        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//        return self.present(alertVC, animated: true, completion: nil)
+//
+//    }
+//
+//    private func startNewCalculation() {
+//        let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
+//        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//        return self.present(alertVC, animated: true, completion: nil)
+//
+//    }
     
 }
 

@@ -18,7 +18,7 @@ class CalculatorCountOnMe {
     
     // Error check computed variables
     var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-" &&  elements.last != "*" &&  elements.last != "/"
+        return elements.last != "+" && elements.last != "-" &&  elements.last != "x" &&  elements.last != "/"
     }
     
     var expressionHaveEnoughElement: Bool {
@@ -26,7 +26,7 @@ class CalculatorCountOnMe {
     }
     
     var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" &&  elements.last != "*" &&  elements.last != "/"
+        return elements.last != "+" && elements.last != "-" &&  elements.last != "x" &&  elements.last != "/"
     }
     
     var expressionHaveResult: Bool {
@@ -48,7 +48,7 @@ class CalculatorCountOnMe {
             case "+": result = left + right
             case "-": result = left - right
             case "/": result = left / right
-            case "*": result = left * right
+            case "x": result = left * right
             default: fatalError("Unknown operator !")
             }
             

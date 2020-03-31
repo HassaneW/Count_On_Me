@@ -65,16 +65,6 @@ class CountOnMeTests: XCTestCase {
         
     }
     
-    //    func testInitialValueElements() {
-    //        XCTAssertEqual(calculator.elements, ["0"])
-    //
-    //        calculator.expression = "12 + 4"
-    //
-    //        XCTAssertEqual(calculator.elements, ["12","+","4"])
-    //
-    //    }
-    
-    
     
     func testExpressionIsCorrect_GivenLastValueCalculatorExpressionEqualAddition_WhenExpressionIsCorrectRuns_ThenExpressionIsCorrectIsFalse() {
         
@@ -221,7 +211,7 @@ class CountOnMeTests: XCTestCase {
     
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnMultiplication() {
         
-        calculator.expression = "12 * 4"
+        calculator.expression = "12 x 4"
         
         let result = calculator.resolveOperation()
         
