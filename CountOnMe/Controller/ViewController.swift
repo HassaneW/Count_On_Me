@@ -62,6 +62,8 @@ class ViewController: UIViewController {
         
         sender.isSelected = true
         
+        
+        
         // po sender.currentTitle; sender.currentTitle + case ???
         switch sender {
         case buttonAddition:
