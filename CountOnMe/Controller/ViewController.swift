@@ -34,11 +34,21 @@ class ViewController: UIViewController {
         
     }
     
+    @IBAction func actionReset(_ sender: UIButton) {
+        
+        textView.text.removeAll()
+        textView.text = "0"
+  
+    }
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
+        }
+        
+        if let index = textView.text.firstIndex(of: "0") {
+            textView.text.remove(at: index)
         }
         
         if calculator.expressionHaveResult {
