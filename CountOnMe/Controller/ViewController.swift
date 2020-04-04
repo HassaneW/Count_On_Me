@@ -16,10 +16,10 @@ class ViewController: UIViewController {
     let calculator = CalculatorCountOnMe()
     
     
-    @IBOutlet weak var buttonAddition: UIButton!
-    @IBOutlet weak var buttonSoustraction: UIButton!
-    @IBOutlet weak var buttonMultiplication: UIButton!
-    @IBOutlet weak var buttonDivision: UIButton!
+//    @IBOutlet weak var buttonAddition: UIButton!
+//    @IBOutlet weak var buttonSoustraction: UIButton!
+//    @IBOutlet weak var buttonMultiplication: UIButton!
+//    @IBOutlet weak var buttonDivision: UIButton!
     
     
     
