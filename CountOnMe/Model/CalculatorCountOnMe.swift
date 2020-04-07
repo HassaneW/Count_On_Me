@@ -44,19 +44,37 @@ class CalculatorCountOnMe {
                 else { preconditionFailure("Invalid expression")}
             let operand = operationsToReduce[1]
             
+            var result: Double
+            switch operand {
+            case "+": result = left + right
+            case "-": result = left - right
+            case "/": result = left / right
+            case "x": result = left * right
+            default: fatalError("Unknown operator !")
+            }
             
-                let result: Double
-                    switch operand {
-                    case "+": result = left + right
-                    case "-": result = left - right
-                    case "/": result = left / right
-                    case "x": result = left * right
-                    default: fatalError("Unknown operator !")
+            for _ in operationsToReduce {
+                
+                if operand == "x" {
+                    
+                    let calcul = left * right
+                    
+//                    print(left)
+                    
+                    if operand == "+" {
+                        
+                        result = calcul + left
+                        
+                        print(left)
                     }
                     
-                    operationsToReduce = Array(operationsToReduce.dropFirst(3))
-                    operationsToReduce.insert("\(result)", at: 0)
-                     
+                    
+                }
+            }
+
+            operationsToReduce = Array(operationsToReduce.dropFirst(3))
+            operationsToReduce.insert("\(result)", at: 0)
+            
         }
         
         return operationsToReduce

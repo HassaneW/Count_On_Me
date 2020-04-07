@@ -169,9 +169,6 @@ class CountOnMeTests: XCTestCase {
     }
     
     
-    
-    
-    
     func test_GivenCalculatorExpressionIsNotEmpty_WhenResolveOperationRuns_ThenResolveOperationreturnsArrayElement() {
         
         calculator.expression = "23"
@@ -238,6 +235,23 @@ class CountOnMeTests: XCTestCase {
         
         XCTAssertEqual(result, ["48"])
     }
+    
+    // 1 Operation avec 2 operateur fonctionne
+    // 2 Definir priorite calcul
+    
+    func test_Givenquejeffectueuneoperationavec2Operandes_WhenJeLanceloperationJaiunresultat() {
+        
+        calculator.expression = "12 + 4 x 3"
+        
+         let result = calculator.resolveOperation()
+        
+        XCTAssertEqual(result, ["24.0"])
+        
+    }
+    
+    
+    
+    
 }
 
 
