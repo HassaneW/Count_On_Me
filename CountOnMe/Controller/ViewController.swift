@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         calculator.expression = textView.text
-        
+
         
     }
     
@@ -104,8 +104,6 @@ class ViewController: UIViewController {
         default:
             break
         }
-        
-        
     }
         
         // po sender.currentTitle; sender.currentTitle + case ???

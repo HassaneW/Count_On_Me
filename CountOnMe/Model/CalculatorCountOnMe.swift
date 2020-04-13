@@ -39,8 +39,10 @@ class CalculatorCountOnMe {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
+    
             guard let left = Double(operationsToReduce[0]),
                 let right = Double(operationsToReduce[2])
+                
                 else { preconditionFailure("Invalid expression")}
             let operand = operationsToReduce[1]
             
@@ -52,28 +54,35 @@ class CalculatorCountOnMe {
             case "x": result = left * right
             default: fatalError("Unknown operator !")
             }
-            
-            for _ in operationsToReduce {
-                
-                if operand == "x" {
-                    
-                    let calcul = left * right
-                    
-//                    print(left)
-                    
-                    if operand == "+" {
-                        
-                        result = calcul + left
-                        
-                        print(left)
-                    }
-                    
-                    
-                }
-            }
-
+         
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
+            
+//            if let index = operationsToReduce.firstIndex(where: { $0 == "x" || $0 == "/"}) {
+//                print("\(operationsToReduce[index]) ")
+//
+//                guard let left = Double(operationsToReduce[index-1]),
+//                    let right = Double(operationsToReduce[index+1])
+//
+//                    else { preconditionFailure("Invalid expression")}
+//
+//                let operand = operationsToReduce[index]
+//
+//                var result: Double
+//                   switch operand {
+//                   case "+": result = left + right
+//                   case "-": result = left - right
+//                   case "/": result = left / right
+//                   case "x": result = left * right
+//                   default: fatalError("Unknown operator !")
+//                   }
+//
+//                 operationsToReduce.remove(at: index)
+//                operationsToReduce.remove(at: index-1)
+//                operationsToReduce.remove(at: index-1)
+//                operationsToReduce.insert(String(result), at: index-1)
+//
+//                }
             
         }
         
