@@ -185,7 +185,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["16"])
+        XCTAssertEqual(result, ["16.0"])
     }
     
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnSubstraction() {
@@ -194,7 +194,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["8"])
+        XCTAssertEqual(result, ["8.0"])
     }
     
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnDivision() {
@@ -203,7 +203,7 @@ class CountOnMeTests: XCTestCase {
            
            let result = calculator.resolveOperation()
            
-           XCTAssertEqual(result, ["3"])
+           XCTAssertEqual(result, ["3.0"])
        }
     
     func test_GivenQuedivideTwoNumbers_WhenResolveOperationRuns_ThenReturnTheFiguresAfterTheComma() {
@@ -224,7 +224,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["in"])
+        XCTAssertEqual(result, ["inf"])
     }
     
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnMultiplication() {
@@ -233,7 +233,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["48"])
+        XCTAssertEqual(result, ["48.0"])
     }
     
     // 1 Operation avec 2 operateur fonctionne
