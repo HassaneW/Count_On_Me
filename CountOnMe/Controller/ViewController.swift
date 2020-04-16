@@ -16,12 +16,6 @@ class ViewController: UIViewController {
     let calculator = CalculatorCountOnMe()
     
     
-//    @IBOutlet weak var buttonAddition: UIButton!
-//    @IBOutlet weak var buttonSoustraction: UIButton!
-//    @IBOutlet weak var buttonMultiplication: UIButton!
-//    @IBOutlet weak var buttonDivision: UIButton!
-    
-    
     
     
     // View Life cycles
@@ -105,59 +99,7 @@ class ViewController: UIViewController {
             break
         }
     }
-        
-        // po sender.currentTitle; sender.currentTitle + case ???
-//        switch sender {
-//        case buttonAddition:
-//
-//            textView.text.append(" + ")
-//            calculator.expression = textView.text
-//
-//        case buttonSoustraction:
-//
-//            textView.text.append(" - ")
-//            calculator.expression = textView.text
-//
-//        case buttonMultiplication:
-//
-//            textView.text.append(" x ")
-//            calculator.expression = textView.text
-//
-//        case buttonDivision:
-//
-//            textView.text.append(" / ")
-//            calculator.expression = textView.text
-//
-//        default:
-//            break
-//        }
-//    }
-    
-    
-    //    @IBAction func tappedAdditionButton(_ sender: UIButton) {
-    //
-    //        operatorFactorization(sender)
-    //
-    //    }
-    //
-    //    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-    //
-    //        operatorFactorization(sender)
-    //    }
-    //
-    //
-    //    @IBAction func tappedMultiplication(_ sender: UIButton) {
-    //
-    //        operatorFactorization(sender)
-    //
-    //    }
-    //
-    //
-    //    @IBAction func tappedDivision(_ sender: UIButton) {
-    //
-    //        operatorFactorization(sender)
-    //    }
-    //
+ 
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
@@ -184,29 +126,4 @@ class ViewController: UIViewController {
         self.present(alertVC, animated: true, completion: nil)
         
     }
-    
-//    private func OperatorIsAlreadyOn() {
-//        let alertVC = UIAlertController(title: "Zéro!", message: "Un operateur est déja mis !", preferredStyle: .alert)
-//        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//        self.present(alertVC, animated: true, completion: nil)
-//    }
-//
-//    private func enterCorrectExpression() {
-//        let alertVC = UIAlertController(title: "Zéro!", message: "Entrez une expression correcte !", preferredStyle: .alert)
-//        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//        return self.present(alertVC, animated: true, completion: nil)
-//
-//    }
-//
-//    private func startNewCalculation() {
-//        let alertVC = UIAlertController(title: "Zéro!", message: "Démarrez un nouveau calcul !", preferredStyle: .alert)
-//        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//        return self.present(alertVC, animated: true, completion: nil)
-//
-//    }
-    
 }
-
-// Créer 2 fonctions pour les messages d'erreurs
-
-// Fonction communication entre textView.text et calculator.expression 

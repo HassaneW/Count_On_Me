@@ -64,7 +64,7 @@ class CalculatorCountOnMe {
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
-            case "/": result = left / right
+            case "/": result = left / right; print(result)
             case "x": result = left * right
             default: fatalError("Unknown operator !")
             }
