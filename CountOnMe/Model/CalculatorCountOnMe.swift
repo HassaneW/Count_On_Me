@@ -33,7 +33,20 @@ class CalculatorCountOnMe {
         return expression.firstIndex(of: "=") != nil
     }
     
-    func resolveOperation() -> [String] {
+    
+    var expressionDividedByZero :  Bool {
+        
+        print(expression)
+        
+        // On veut verifier que diviser et 0 sont l'un à la suite de l'autre
+        // Dans un string trouver ce qu'on veut trouver
+        // Verifier une expression sui se compose de / 0
+        
+        return true
+
+    }
+    
+    func resolveOperation() -> String {
         // Create local copy of operations
         var operationsToReduce = elements
         
@@ -54,7 +67,14 @@ class CalculatorCountOnMe {
             guard let left = Double(operationsToReduce[operandIndex-1]),
                 let right = Double(operationsToReduce[operandIndex+1])
                 
-                else { preconditionFailure("Invalid expression")}
+                // Remplacer par return
+                else { return "Invalid expression" }
+//            preconditionFailure("Invalid expression"
+            
+//            if right == 0.0 {
+//
+//                operationsToReduce = ["Operation Impossible, changer le 0"]
+//            }
             
             let operand = operationsToReduce[operandIndex]
             
@@ -64,9 +84,10 @@ class CalculatorCountOnMe {
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
-            case "/": result = left / right; print(result)
+            case "/": result = left / right;
             case "x": result = left * right
-            default: fatalError("Unknown operator !")
+//            default: fatalError("Unknown operator !")
+            default: return "Mauvaise operation"
             }
             
             // Mettre a jour le tableau
@@ -77,8 +98,40 @@ class CalculatorCountOnMe {
             
         }
         
-        return operationsToReduce
+//        let operation = operationsToReduce
+
+        guard let premierElementOperation = operationsToReduce.first else {
+            return "Mauvaise operation"
+            
+        }
+        
+        return premierElementOperation
+       
+            
+        
+        
+        
+//        return operationsToReduce
     }
+    
+//    func testEqual() -> String {
+//
+//        let operation = resolveOperation()
+//
+//        guard let premierElementOperation = operation.first else {
+//            return "Mauvaise operation"
+//
+//        }
+//
+//        return premierElementOperation
+//        }
+            
+//           let operation = calculator.resolveOperation()
+//
+//           textView.text.append(" = \(operation.first!)")
+//           calculator.expression = textView.text
+    
+
     
 }
 

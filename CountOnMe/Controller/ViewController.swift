@@ -102,6 +102,14 @@ class ViewController: UIViewController {
  
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
+        
+        guard calculator.expressionDividedByZero else {
+                   
+                   return factorisationErrorMessage(messageError: "Division par Zero impossible")
+                   
+               }
+        
+        
         guard calculator.expressionIsCorrect else {
             
             return factorisationErrorMessage(messageError: "Entrez une expression correcte !")
@@ -112,9 +120,10 @@ class ViewController: UIViewController {
             return factorisationErrorMessage(messageError: "Démarrez un nouveau calcul !")
         }
         
-        let operation = calculator.resolveOperation()
         
-        textView.text.append(" = \(operation.first!)")
+//        let operation = calculator.resolveOperation()
+        
+        textView.text.append(" = \(calculator.resolveOperation())")
         calculator.expression = textView.text
     }
     

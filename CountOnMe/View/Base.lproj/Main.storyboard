@@ -271,11 +271,11 @@
                                 <exclude reference="F3i-Su-gqb"/>
                                 <exclude reference="aeP-5W-dRz"/>
                                 <exclude reference="zH5-En-lyM"/>
-                                <exclude reference="w4U-GV-ZeW"/>
                                 <exclude reference="4oL-fp-kPM"/>
                                 <exclude reference="lUt-Qg-els"/>
                                 <exclude reference="nyB-hf-896"/>
                                 <exclude reference="VNm-oa-agp"/>
+                                <exclude reference="w4U-GV-ZeW"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -287,7 +287,6 @@
                                 <exclude reference="Tby-LQ-guo"/>
                                 <exclude reference="aeP-5W-dRz"/>
                                 <include reference="zH5-En-lyM"/>
-                                <include reference="w4U-GV-ZeW"/>
                                 <include reference="4oL-fp-kPM"/>
                                 <exclude reference="5cr-Nd-dzu"/>
                                 <exclude reference="eJV-1B-avZ"/>
@@ -297,6 +296,7 @@
                                 <exclude reference="CUf-AC-PsW"/>
                                 <exclude reference="G9W-Os-Saz"/>
                                 <include reference="VNm-oa-agp"/>
+                                <include reference="w4U-GV-ZeW"/>
                             </mask>
                         </variation>
                     </view>
