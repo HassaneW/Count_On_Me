@@ -42,8 +42,42 @@ class CalculatorCountOnMe {
         // Dans un string trouver ce qu'on veut trouver
         // Verifier une expression sui se compose de / 0
         
+       
+        // Retrouver une sequence dans un tableau
+//        var tableau = ["Z","/","0","R"]
+//
+//        var positionDivision = 0
+//        var positionZero = 0
+//        var currentIndex1 = 0
+//        var currentIndex2 = 2
+//
+//
+//        for item in tableau {
+//
+//            positionZero += 1
+//            positionDivision += 1
+//
+//            if item == "/" {
+//
+//                currentIndex1 = positionDivision-1
+//
+//                if item == "0" {
+//
+//                    currentIndex2 = positionZero-1
+//                }
+//            }
+//
+//            if currentIndex2 == currentIndex1 + 1 {
+//
+//                print("OK")
+//            }
+//        }
+//
+//        print(currentIndex1)
+//        print(currentIndex2)
+        
         return true
-
+        
     }
     
     func resolveOperation() -> String {
@@ -69,12 +103,12 @@ class CalculatorCountOnMe {
                 
                 // Remplacer par return
                 else { return "Invalid expression" }
-//            preconditionFailure("Invalid expression"
+            //            preconditionFailure("Invalid expression"
             
-//            if right == 0.0 {
-//
-//                operationsToReduce = ["Operation Impossible, changer le 0"]
-//            }
+            //            if right == 0.0 {
+            //
+            //                operationsToReduce = ["Operation Impossible, changer le 0"]
+            //            }
             
             let operand = operationsToReduce[operandIndex]
             
@@ -86,7 +120,7 @@ class CalculatorCountOnMe {
             case "-": result = left - right
             case "/": result = left / right;
             case "x": result = left * right
-//            default: fatalError("Unknown operator !")
+            //            default: fatalError("Unknown operator !")
             default: return "Mauvaise operation"
             }
             
@@ -98,40 +132,40 @@ class CalculatorCountOnMe {
             
         }
         
-//        let operation = operationsToReduce
-
+        //        let operation = operationsToReduce
+        
         guard let premierElementOperation = operationsToReduce.first else {
             return "Mauvaise operation"
             
         }
         
         return premierElementOperation
-       
-            
         
         
         
-//        return operationsToReduce
+        
+        
+        //        return operationsToReduce
     }
     
-//    func testEqual() -> String {
-//
-//        let operation = resolveOperation()
-//
-//        guard let premierElementOperation = operation.first else {
-//            return "Mauvaise operation"
-//
-//        }
-//
-//        return premierElementOperation
-//        }
-            
-//           let operation = calculator.resolveOperation()
-//
-//           textView.text.append(" = \(operation.first!)")
-//           calculator.expression = textView.text
+    //    func testEqual() -> String {
+    //
+    //        let operation = resolveOperation()
+    //
+    //        guard let premierElementOperation = operation.first else {
+    //            return "Mauvaise operation"
+    //
+    //        }
+    //
+    //        return premierElementOperation
+    //        }
     
-
+    //           let operation = calculator.resolveOperation()
+    //
+    //           textView.text.append(" = \(operation.first!)")
+    //           calculator.expression = textView.text
+    
+    
     
 }
 
