@@ -175,7 +175,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["23"])
+        XCTAssertEqual(result, "23")
         
     }
     
@@ -185,7 +185,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["16.0"])
+        XCTAssertEqual(result, "16.0")
     }
     
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnSubstraction() {
@@ -194,7 +194,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["8.0"])
+        XCTAssertEqual(result, "8.0")
     }
     
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnDivision() {
@@ -203,7 +203,7 @@ class CountOnMeTests: XCTestCase {
            
            let result = calculator.resolveOperation()
            
-           XCTAssertEqual(result, ["3.0"])
+           XCTAssertEqual(result, "3.0")
        }
     
     func test_GivenQuedivideTwoNumbers_WhenResolveOperationRuns_ThenReturnTheFiguresAfterTheComma() {
@@ -212,12 +212,12 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-         XCTAssertEqual(result, ["2.4"])
+         XCTAssertEqual(result, "2.4")
         
         
     }
     
-    func test_GivenJeDiviseUnNombreParZero_WhenResolveOperationRuns_ThenJeRetourneUnMessageDerreur() {
+    func test_GivenIDivideANumberByZero_WhenResolveOperationRuns_ThenIReturnAnErrorMessage() {
         
         
         calculator.expression = "12 / 0"
@@ -233,7 +233,7 @@ class CountOnMeTests: XCTestCase {
         
         let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["48.0"])
+        XCTAssertEqual(result, "48.0")
     }
     
     // 1 Operation avec 2 operateur fonctionne
@@ -247,7 +247,7 @@ class CountOnMeTests: XCTestCase {
         
          let result = calculator.resolveOperation()
         
-        XCTAssertEqual(result, ["24.0"])
+        XCTAssertEqual(result, "24.0")
         
     }
     

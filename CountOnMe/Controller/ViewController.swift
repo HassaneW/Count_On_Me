@@ -15,16 +15,13 @@ class ViewController: UIViewController {
     
     let calculator = CalculatorCountOnMe()
     
-    
-    
-    
     // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         calculator.expression = textView.text
-
+        
         
     }
     
@@ -33,7 +30,7 @@ class ViewController: UIViewController {
         textView.text.removeAll()
         textView.text = "0"
         calculator.expression = textView.text
-  
+        
     }
     
     // View actions
@@ -42,11 +39,11 @@ class ViewController: UIViewController {
             return
         }
         
-//        if let index = textView.text.firstIndex(of: "0") {
-//
-//            textView.text.remove(at: index)
-//        calculator.expression = textView.text
-//        }
+        //        if let index = textView.text.firstIndex(of: "0") {
+        //
+        //            textView.text.remove(at: index)
+        //        calculator.expression = textView.text
+        //        }
         
         
         if textView.text == "0" {
@@ -68,19 +65,12 @@ class ViewController: UIViewController {
     @IBAction func tappedOperateurButton(_ sender: UIButton) {
         
         guard calculator.canAddOperator == true else {
-//            OperatorIsAlreadyOn()
+            // OperatorIsAlreadyOn()
             factorisationErrorMessage(messageError: "Un operateur est déja mis !")
             return
         }
         
         sender.isSelected = true
-        
-//        if sender.currentTitle == " + " {
-//            textView.text.append(" + ")
-//            calculator.expression = textView.text
-//
-//        }
-        
         
         switch sender.currentTitle {
         case "+":
@@ -99,19 +89,18 @@ class ViewController: UIViewController {
             break
         }
     }
- 
+    
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         
         guard calculator.expressionDividedByZero else {
-                   
-                   return factorisationErrorMessage(messageError: "Division par Zero impossible")
-                   
-               }
-        
+            
+            return factorisationErrorMessage(messageError: "Division par Zero impossible")
+            
+        }
         
         guard calculator.expressionIsCorrect else {
-            
+
             return factorisationErrorMessage(messageError: "Entrez une expression correcte !")
         }
         
@@ -121,15 +110,50 @@ class ViewController: UIViewController {
         }
         
         
-//        let operation = calculator.resolveOperation()
-        
+        //      let operation = calculator.resolveOperation()
         textView.text.append(" = \(calculator.resolveOperation())")
+        
         calculator.expression = textView.text
+        
+        
+        // Operation terminer
+        // Resultat apparait dans textview
+        // A) J'appuie sur un autre chiffre tous se remet à 0
+        // B) J'appuie sur un operateur puis je selectionne un autre
+        // chiffre et le textView se vide afin de laisser apparaître le nouveau
+        // chiffre taper
+        
+        // Objectif : Message d'erreur si on selectionne l'operateur
+        
+        
+//        sender.isSelected = true
+//        
+//        switch sender.currentTitle {
+//        case "+":
+//            break
+//        case "-":
+//            break
+//        case "/":
+//            break
+//        case "x":
+//            break
+//        default:
+//            break
+//        }
+        
+        
+        
+    }
+    
+    func start() {
+        
+        
+        
     }
     
     
     func factorisationErrorMessage(messageError: String) {
-    
+        
         let alertVC = UIAlertController(title: "Zéro!", message: messageError, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
