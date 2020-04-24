@@ -33,49 +33,9 @@ class CalculatorCountOnMe {
         return expression.firstIndex(of: "=") != nil
     }
     
-    var expressionDividedByZero :  Bool {
+    var expressionDividedByZero : Bool {
         
-        print(expression)
-        
-        // On veut verifier que diviser et 0 sont l'un à la suite de l'autre
-        // Dans un string trouver ce qu'on veut trouver
-        // Verifier une expression sui se compose de / 0
-        
-        
-        // Retrouver une sequence dans un tableau
-        //        var tableau = ["Z","/","0","R"]
-        //
-        //        var positionDivision = 0
-        //        var positionZero = 0
-        //        var currentIndex1 = 0
-        //        var currentIndex2 = 2
-        //
-        //
-        //        for item in tableau {
-        //
-        //            positionZero += 1
-        //            positionDivision += 1
-        //
-        //            if item == "/" {
-        //
-        //                currentIndex1 = positionDivision-1
-        //
-        //                if item == "0" {
-        //
-        //                    currentIndex2 = positionZero-1
-        //                }
-        //            }
-        //
-        //            if currentIndex2 == currentIndex1 + 1 {
-        //
-        //                print("La division par 0 est impossible")
-        //            }
-        //        }
-        //
-        //        print(currentIndex1)
-        //        print(currentIndex2)
-        
-        return true
+        return expression.contains("/ 0")
         
     }
     

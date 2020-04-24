@@ -64,11 +64,20 @@ class ViewController: UIViewController {
     
     @IBAction func tappedOperateurButton(_ sender: UIButton) {
         
-        guard calculator.canAddOperator == true else {
+        guard calculator.canAddOperator else {
             // OperatorIsAlreadyOn()
             factorisationErrorMessage(messageError: "Un operateur est déja mis !")
             return
+                   
         }
+        
+        guard !calculator.expressionHaveResult else {
+            
+        factorisationErrorMessage(messageError: "Sélectionner un chiffre")
+           return
+        }
+             
+       
         
         sender.isSelected = true
         
@@ -88,12 +97,13 @@ class ViewController: UIViewController {
         default:
             break
         }
+        
     }
     
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         
-        guard calculator.expressionDividedByZero else {
+        guard !calculator.expressionDividedByZero else {
             
             return factorisationErrorMessage(messageError: "Division par Zero impossible")
             
@@ -114,33 +124,6 @@ class ViewController: UIViewController {
         textView.text.append(" = \(calculator.resolveOperation())")
         
         calculator.expression = textView.text
-        
-        
-        // Operation terminer
-        // Resultat apparait dans textview
-        // A) J'appuie sur un autre chiffre tous se remet à 0
-        // B) J'appuie sur un operateur puis je selectionne un autre
-        // chiffre et le textView se vide afin de laisser apparaître le nouveau
-        // chiffre taper
-        
-        // Objectif : Message d'erreur si on selectionne l'operateur
-        
-        
-//        sender.isSelected = true
-//        
-//        switch sender.currentTitle {
-//        case "+":
-//            break
-//        case "-":
-//            break
-//        case "/":
-//            break
-//        case "x":
-//            break
-//        default:
-//            break
-//        }
-        
         
         
     }
