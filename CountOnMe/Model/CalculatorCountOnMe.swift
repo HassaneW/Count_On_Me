@@ -86,8 +86,6 @@ class CalculatorCountOnMe {
             
         }
         
-        //        let operation = operationsToReduce
-        
         guard let premierElementOperation = operationsToReduce.first else {
             return "Mauvaise operation"
             

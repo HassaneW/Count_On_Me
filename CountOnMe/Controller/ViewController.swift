@@ -68,16 +68,16 @@ class ViewController: UIViewController {
             // OperatorIsAlreadyOn()
             factorisationErrorMessage(messageError: "Un operateur est déja mis !")
             return
-                   
+            
         }
         
         guard !calculator.expressionHaveResult else {
             
-        factorisationErrorMessage(messageError: "Sélectionner un chiffre")
-           return
+            factorisationErrorMessage(messageError: "Sélectionner un chiffre")
+            return
         }
-             
-       
+        
+        
         
         sender.isSelected = true
         
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
         }
         
         guard calculator.expressionIsCorrect else {
-
+            
             return factorisationErrorMessage(messageError: "Entrez une expression correcte !")
         }
         
@@ -127,13 +127,6 @@ class ViewController: UIViewController {
         
         
     }
-    
-    func start() {
-        
-        
-        
-    }
-    
     
     func factorisationErrorMessage(messageError: String) {
         
