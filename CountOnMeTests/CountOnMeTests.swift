@@ -168,6 +168,16 @@ class CountOnMeTests: XCTestCase {
         
     }
     
+    func test_GivenIDivideANumberByZero_WhenResolveOperationRuns_ThenIReturnAnErrorMessage() {
+        
+        
+        calculator.expression = "12 / 0"
+        
+        _ = calculator.expressionDividedByZero
+        
+        XCTAssertTrue(true, "Division par Zero impossible")
+    }
+    
     
     func test_GivenCalculatorExpressionIsNotEmpty_WhenResolveOperationRuns_ThenResolveOperationreturnsArrayElement() {
         
@@ -217,16 +227,6 @@ class CountOnMeTests: XCTestCase {
         
     }
     
-    func test_GivenIDivideANumberByZero_WhenResolveOperationRuns_ThenIReturnAnErrorMessage() {
-        
-        
-        calculator.expression = "12 / 0"
-        
-//        let result = calculator.resolveOperation()
-        
-        XCTAssertTrue(true, "Operation impossible")
-    }
-    
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnMultiplication() {
         
         calculator.expression = "12 x 4"
@@ -252,7 +252,36 @@ class CountOnMeTests: XCTestCase {
     }
     
     
+    func test_GivenQueJeMetUnMauvaisOperateur_WhenJeLanceLoperation_ThenJaiUnMessageDerreur() {
+        
+        calculator.expression = "12 A 4"
+        
+        let result = calculator.resolveOperation()
+        
+        XCTAssertEqual(result, "Mauvaise operation")
+        
+        
+    }
     
+    func test_GivenJefaisUneOperation_WhenJeLancelOperation_ThenJeSelectionnePasLe1erElementDuTableau() {
+        
+        calculator.expression = "12 + 4"
+        
+       let result = calculator.resolveOperation()
+        
+        if calculator.elements.first == result {
+            
+             XCTAssertTrue(true, "16")
+            
+        } else if calculator.elements.first != result {
+            
+            XCTAssertFalse(false, "Mauvaise operation")
+            
+        }
+        
+        
+        
+    }
     
 }
 
