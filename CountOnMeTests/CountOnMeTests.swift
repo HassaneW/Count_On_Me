@@ -265,22 +265,27 @@ class CountOnMeTests: XCTestCase {
     
     func test_GivenJefaisUneOperation_WhenJeLancelOperation_ThenJeSelectionnePasLe1erElementDuTableau() {
         
-        calculator.expression = "12 + 4"
+        calculator.expression = ""
         
-       let result = calculator.resolveOperation()
-        
-        if calculator.elements.first == result {
-            
-             XCTAssertTrue(true, "16")
-            
-        } else if calculator.elements.first != result {
-            
-            XCTAssertFalse(false, "Mauvaise operation")
-            
-        }
+        let result = calculator.resolveOperation()
         
         
         
+        XCTAssertEqual(result, "Résultat Manquant")
+        
+       
+        
+    }
+    
+    func test_GivenQueJeMetUnMauvaisOperateur_WhenJeLanceLoperation_ThenJaiUnMessageDerreurInvalidExpression() {
+        
+        calculator.expression = "A + B"
+        
+        let result = calculator.resolveOperation()
+        
+        
+        
+        XCTAssertEqual(result, "Invalid expression")
     }
     
 }
