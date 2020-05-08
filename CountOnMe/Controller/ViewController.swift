@@ -19,9 +19,7 @@ class ViewController: UIViewController {
         calculator.expression = textView.text
     }
     @IBAction func actionReset(_ sender: UIButton) {
-        textView.text.removeAll()
-        textView.text = "0"
-        calculator.expression = textView.text
+        reset()
     }
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
@@ -41,7 +39,8 @@ class ViewController: UIViewController {
     }
     @IBAction func tappedOperateurButton(_ sender: UIButton) {
         guard calculator.expressionIsCorrect else {
-            return factorisationErrorMessage(messageError: "Enter a correct expression !")
+            factorisationErrorMessage(messageError: "Enter a correct expression !")
+            return
         }
         guard !calculator.expressionHaveResult else {
             factorisationErrorMessage(messageError: "Select a number")
@@ -67,23 +66,29 @@ class ViewController: UIViewController {
     }
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         guard !calculator.expressionDividedByZero else {
-            textView.text = "0"
-            calculator.expression = textView.text
+            factorisationErrorMessage(messageError: "Division by Zero impossible: Repeat the operation, please ")
+            reset()
             return
-                factorisationErrorMessage(messageError: "Division by Zero impossible: Repeat the operation, please ")
         }
         guard calculator.expressionIsCorrect else {
-            return factorisationErrorMessage(messageError: "Enter a correct expression !")
+            factorisationErrorMessage(messageError: "Enter a correct expression !")
+            return
         }
         guard calculator.expressionHaveEnoughElement else {
-            return factorisationErrorMessage(messageError: "Start a new calculation !")
+            factorisationErrorMessage(messageError: "Not Enough Element !")
+            return
         }
         textView.text.append(" = \(calculator.resolveOperation())")
         calculator.expression = textView.text
     }
-    func factorisationErrorMessage(messageError: String) {
+    private func factorisationErrorMessage(messageError: String) {
         let alertVC = UIAlertController(title: "Zéro!", message: messageError, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alertVC, animated: true, completion: nil)
+    }
+    private func reset() {
+        textView.text.removeAll()
+        textView.text = "0"
+        calculator.expression = textView.text
     }
 }
