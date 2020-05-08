@@ -9,55 +9,58 @@
 import Foundation
 
 class CalculatorCountOnMe {
-    
     var expression : String = "0"
-    
     var elements: [String] {
         return expression.split(separator: " ").map { "\($0)" }
     }
-    
     // Error check computed variables
     var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-"
+        return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
     }
-    
     var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
-    
-    var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-"
-    }
-    
     var expressionHaveResult: Bool {
         return expression.firstIndex(of: "=") != nil
     }
-    
-    func resolveOperation() -> [String] {
+    var expressionDividedByZero : Bool {
+        return expression.contains("/ 0")
+    }
+    func resolveOperation() -> String {
         // Create local copy of operations
         var operationsToReduce = elements
-        
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
-            
-            let result: Int
+            // Operator index
+            var operandIndex = 1
+            if let index = operationsToReduce.firstIndex(where: { $0 == "x" || $0 == "/"}) {
+                operandIndex = index
+            }
+            // Assigning numbers
+            guard let left = Double(operationsToReduce[operandIndex-1]),
+                let right = Double(operationsToReduce[operandIndex+1])
+                else { return "Invalid expression" }
+            // Calculation
+            let operand = operationsToReduce[operandIndex]
+            var result: Double
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
-            default: fatalError("Unknown operator !")
+            case "/": result = left / right;
+            case "x": result = left * right
+            default: return "Bad operation"
             }
-            
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
-            
+            // Update operationsToReduce table
+            operationsToReduce.remove(at: operandIndex)
+            operationsToReduce.remove(at: operandIndex-1)
+            operationsToReduce.remove(at: operandIndex-1)
+            operationsToReduce.insert(String(result), at: operandIndex-1)
         }
-        
-        return operationsToReduce
+        guard let firstElementOperationToReduce = operationsToReduce.first else {
+            return "Missing Result"
+        }
+        return firstElementOperationToReduce
     }
-    
 }
 
 

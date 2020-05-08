@@ -50,6 +50,16 @@
                ReferencedContainer = "container:CountOnMe.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "50C505E4245C449400746CE1"
+               BuildableName = "CountOnMeUITest.xctest"
+               BlueprintName = "CountOnMeUITest"
+               ReferencedContainer = "container:CountOnMe.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

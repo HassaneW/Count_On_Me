@@ -11,206 +11,142 @@ import XCTest
 
 class CountOnMeTests: XCTestCase {
     
-    // Tester fonction -> elements, expressionHaveEnoughElement, canAddOperator, expressionHaveResult, resolveOperation()
-    
     var calculator : CalculatorCountOnMe!
     
     override func setUp() {
         super.setUp()
         
         calculator = CalculatorCountOnMe()
-        
-        
     }
-    
-    func testElements() {
-        
-        
-    }
-    
-    func testExpressionIsCorrect() {
-        // Given_When_Then
+    func testInitialValueElements_GivenCalculExpressionIsEmpty_WhenAddValuesToCalculatorCalculExpression_ThenCalculatorElementReturnsAnArrayOfSeparateElements() {
         
         // Given
-        calculator.expression = "+"
-        calculator.expression = "-"
-        
+        calculator.expression = ""
         // When
-        let result = calculator.expressionIsCorrect
-        
+        calculator.expression = "12 + 4"
         // Then
-        XCTAssertFalse(result)
-        
+        XCTAssertEqual(calculator.elements, ["12","+","4"])
     }
-    
-    func testexpressionHaveEnoughElement() {
+    func testInitialValueElements_GivenCalculExpressionIsEmpty_WhenAddValuesToCalculatorCalculExpression_ThenCalculatorElementDoNotReturnsAnArrayOfSeparateElements() {
         
-        let result = calculator.elements.count >= 3
-        
-        XCTAssertFalse(result)
-        
+        calculator.expression = ""
+        calculator.expression = "12 + 4"
+        XCTAssertNotEqual(calculator.elements, ["12 + 4"])
     }
-    
-    func testCanAddOperator() {
+    func testExpressionIsCorrect_GivenLastValueCalculatorExpressionEqualAddition_WhenExpressionIsCorrectRuns_ThenExpressionIsCorrectIsFalse() {
         
-        // Given -> Etant donné que expression = +
-        calculator.expression = "+"
-        calculator.expression = "-"
-        
-        // When -> Quand.... : Action que l'on veut tester ->  J'ajoute un operateur + en dernier element du tableau
-        let result = calculator.canAddOperator
-        
-        // Then -> Alors... : Situation d'arriver du test -> Ca retourne Faux
-        
+        calculator.expression = "12 4 +"
+        let result = calculator.expressionIsCorrect
         XCTAssertFalse(result)
     }
-    
-    func testexpressionHaveResult() {
+    func testExpressionIsCorrect_GivenLastValueCalculatorExpressionNotEqualAddition_WhenExpressionIsCorrectRuns_ThenExpressionIsCorrectIsTrue() {
         
-        let result = calculator.expression.firstIndex(of: "=")
-        
-        XCTAssertFalse((result != nil))
-        
+        calculator.expression = "12 + 4"
+        let result = calculator.expressionIsCorrect
+        XCTAssertTrue(result)
     }
-    
-    func testValeurOneTableauElement() {
+    func testExpressionIsCorrect_GivenLastValueCalculatorExpressionEqualSubstraction_WhenExpressionIsCorrectRuns_ThenExpressionIsCorrectIsFalse() {
         
-        // Tester que la 1ére valeur du tableau Element est un Int
-        
-        // Given -> Etant donné que le tableau elements n'est pas vide
-        
-        
-        // When -> Quand.... : Je crée un élément dans ce tableau (conversion de type)
-        
-        let operationsToReduce = calculator.elements
-        var left = Int(operationsToReduce[0])!
-        
-        left = 10
-        // Alors cette élément est un entier
-        
-        XCTAssertTrue(left == 10)
-        
+        calculator.expression = "12 4 -"
+        let result = calculator.expressionIsCorrect
+        XCTAssertFalse(result)
     }
-    
-    func testValeurDeuxTableauElement() {
+    func testExpressionIsCorrect_GivenLastValueCalculatorExpressionNotEqualSubstraction_WhenExpressionIsCorrectRuns_ThenExpressionIsCorrectIsTrue() {
         
-        if calculator.elements.count > 1 {
-            // Tester que la 2éme valeur du tableau Element est un String
-            
-            let operationsToReduce = calculator.elements
-            var operand = operationsToReduce[1]
-            
-            operand = "+"
-            operand = "-"
-            
-            XCTAssertTrue(operand == "+" || operand == "-")
-            
-        }
-        
+        calculator.expression = "12 - 4"
+        let result = calculator.expressionIsCorrect
+        XCTAssertTrue(result)
     }
-    
-    func testValeurTroisTableauElement() {
+    func testexpressionHaveEnoughElement_GivenCalculatorExpressionLessthanThreeitems_WhenexpressionHaveEnoughElementRuns_ThenexpressionHaveEnoughElementisFalse() {
         
-        if calculator.elements.count > 2 {
-            
-            let operationsToReduce = calculator.elements
-            var right = Int(operationsToReduce[2])!
-            
-            right = 10
-            
-            XCTAssertTrue(right == 10)
-        }
-        
+        calculator.expression = "23"
+        let result = calculator.expressionHaveEnoughElement
+        XCTAssertFalse(result)
     }
-    
-    func testAddition() {
+    func testexpressionHaveEnoughElement_GivenCalculatorExpressionAMinimumOfThreeitems_WhenexpressionHaveEnoughElementRuns_ThenexpressionHaveEnoughElementisTrue() {
         
-        if calculator.elements.count >= 3 {
-            
-            let operationsToReduce = calculator.elements
-            var left = Int(operationsToReduce[0])!
-            
-            left = 10
-            
-            var operand = operationsToReduce[1]
-            
-            operand = "+"
-            
-            var right = Int(operationsToReduce[2])!
-            
-            right = 10
-            
-            let result: Int
-            switch operand {
-            case "+": result = left + right
-            default: fatalError("Unknown operator !")
-            }
-            
-            XCTAssertTrue(result == 20)
-            
-        }
-        
+        calculator.expression = "12 + 4"
+        let result = calculator.expressionHaveEnoughElement
+        XCTAssertTrue(result)
     }
-    
-    
-    func testSoustraction() {
+    func testexpressionHaveResult_GivenCalculatorExpressionDoesNotContainTheEqualsign_WhenexpressionHaveResultRuns_ThenexpressionHaveResultIsFalse() {
         
-        if calculator.elements.count >= 3 {
-            
-            let operationsToReduce = calculator.elements
-            var left = Int(operationsToReduce[0])!
-            
-            left = 20
-            
-            var operand = operationsToReduce[1]
-            
-            operand = "-"
-            
-            var right = Int(operationsToReduce[2])!
-            
-            right = 10
-            
-            let result: Int
-            switch operand {
-            case "-": result = left - right
-            default: fatalError("Unknown operator !")
-            }
-            
-            XCTAssertTrue(result == 10)
-            
-        }
-        
+        calculator.expression = "12 + 4"
+        let result = calculator.expressionHaveResult
+        XCTAssertFalse(result)
     }
-    
-    func testResolveOperation() {
+    func testexpressionHaveResult_GivenCalculatorExpressionContainTheEqualsign_WhenexpressionHaveResultRuns_ThenexpressionHaveResultIsTrue() {
         
-        if calculator.elements.count >= 3 {
-            let operationsToReduce = calculator.elements
-            var left = Int(operationsToReduce[0])!
-             left = 20
-            
-            let operand = operationsToReduce[1]
-            
-            var right = Int(operationsToReduce[2])!
-            right = 10
-            
-            let result: Int
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            default: fatalError("Unknown operator !")
-            }
-            
-            XCTAssertEqual(operand == "+", result == 30)
-            XCTAssertEqual(operand == "-", result == 10)
-        }
-        
+        calculator.expression = "12 + 4 ="
+        let result = calculator.expressionHaveResult
+        XCTAssertTrue(result)
     }
-    
+    func test_GivenIDivideANumberByZero_WhenResolveOperationRuns_ThenIReturnAnErrorMessage() {
+        
+        calculator.expression = "12 / 0"
+        _ = calculator.expressionDividedByZero
+        XCTAssertTrue(true, "Division par Zero impossible")
+    }
+    func test_GivenCalculatorExpressionIsNotEmpty_WhenResolveOperationRuns_ThenResolveOperationreturnsArrayElement() {
+        
+        calculator.expression = "23"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "23")
+    }
+    func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnAddition() {
+        
+        calculator.expression = "12 + 4"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "16.0")
+    }
+    func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnSubstraction() {
+        
+        calculator.expression = "12 - 4"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "8.0")
+    }
+    func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnDivision() {
+        
+        calculator.expression = "12 / 4"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "3.0")
+    }
+    func test_GivenQuedivideTwoNumbers_WhenResolveOperationRuns_ThenReturnTheFiguresAfterTheComma() {
+        
+        calculator.expression = "12 / 5"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "2.4")
+    }
+    func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnMultiplication() {
+        
+        calculator.expression = "12 x 4"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "48.0")
+    }
+    func test_GivenIPerformAnOperationWithTwoOperatorsAdditionAndMultiplication_WhenILaunchTheOperation_ThenICalculateTheOperationWithTheMultiplicationFirst() {
+        
+        calculator.expression = "12 + 4 x 3"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "24.0")
+    }
+    func test_GivenQueIPutABadOperator_WhenILaunchTheOperation_ThenIHaveAnErrorMessage() {
+        
+        calculator.expression = "12 A 4"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "Bad operation")
+    }
+    func test_GivenOperationToReduceIsEmpty_WhenILaunchTheOperation_ThenIHaveAnErrorMessage() {
+        
+        calculator.expression = ""
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "Missing Result")
+    }
+    func test_GivenConvertLeftAndRightElements_WhenILaunchTheOperation_ThenIHaveAnErrorMessage() {
+        
+        calculator.expression = "A + B"
+        let result = calculator.resolveOperation()
+        XCTAssertEqual(result, "Invalid expression")
+    }
 }
 
 
-// tester la fonction dropFirst pas besoin de tester fonction swift
-// tester la fonction insert
-
-// Tester résultat de l'operation
