@@ -76,5 +76,12 @@ class CountOnMeUITest: XCTestCase {
         XCTAssertEqual(textView.value as? String, "0")
     }
     
+    func testfactorisationErrorMessage() {
+        
+        app.buttons["+"].tap()
+        app.buttons["="].tap()
+        
+        XCTAssertFalse(false)
+    }
     
 }

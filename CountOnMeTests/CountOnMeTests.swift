@@ -20,8 +20,11 @@ class CountOnMeTests: XCTestCase {
     }
     func testInitialValueElements_GivenCalculExpressionIsEmpty_WhenAddValuesToCalculatorCalculExpression_ThenCalculatorElementReturnsAnArrayOfSeparateElements() {
         
+        // Given
         calculator.expression = ""
+        // When
         calculator.expression = "12 + 4"
+        // Then
         XCTAssertEqual(calculator.elements, ["12","+","4"])
     }
     func testInitialValueElements_GivenCalculExpressionIsEmpty_WhenAddValuesToCalculatorCalculExpression_ThenCalculatorElementDoNotReturnsAnArrayOfSeparateElements() {
