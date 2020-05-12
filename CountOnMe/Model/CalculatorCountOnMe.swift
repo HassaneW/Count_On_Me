@@ -9,7 +9,17 @@
 import Foundation
 
 class CalculatorCountOnMe {
+    
     var expression : String = "0"
+//    {
+//        
+//        didSet {
+//            
+//            }
+//            
+//        }
+
+    
     var elements: [String] {
         return expression.split(separator: " ").map { "\($0)" }
     }
@@ -25,6 +35,21 @@ class CalculatorCountOnMe {
     }
     var expressionDividedByZero : Bool {
         return expression.contains("/ 0")
+    }
+    func tappedNumberButton(numberText: String) {
+        
+    }
+    func tappedOperatorButton(with: String) {
+        
+    }
+    func tappedEqualButton() {
+        
+    }
+    func reset() {
+        
+    }
+    func ErrorMessage(messageError: String) {
+        // Affichage du message d'erreur en fonction de la variable calculée
     }
     func resolveOperation() -> String {
         // Create local copy of operations
