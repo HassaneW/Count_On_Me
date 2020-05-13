@@ -13,12 +13,21 @@ class ViewController: UIViewController {
 
     private let calculator = CalculatorCountOnMe()
     
+   
+    
+    
     // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         calculator.expression = textView.text
         
+         let notificationName = Notification.Name("DataUpdated")
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTextView), name: notificationName, object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(errorDividedByZero), name: Notification.Name("ErrorDividedByZero"), object: nil)
         
     }
     // View actions
@@ -30,16 +39,18 @@ class ViewController: UIViewController {
         guard let numberText = sender.title(for: .normal) else { return }
         calculator.tappedNumberButton(numberText: numberText)
         
-        if textView.text == "0" {
-            textView.text = ""
-            calculator.expression = textView.text
-        }
-        if calculator.expressionHaveResult {
-            textView.text = ""
-            calculator.expression = textView.text
-        }
-        textView.text.append(numberText)
-        calculator.expression = textView.text
+//         textView.text = calculator.expression
+        
+//        if textView.text == "0" {
+//            textView.text = ""
+//            calculator.expression = textView.text
+//        }
+//        if calculator.expressionHaveResult {
+//            textView.text = ""
+//            calculator.expression = textView.text
+//        }
+//        textView.text.append(numberText)
+//        calculator.expression = textView.text
     }
     
     // operator
@@ -111,5 +122,15 @@ class ViewController: UIViewController {
         textView.text.removeAll()
         textView.text = "0"
         calculator.expression = textView.text
+    }
+    
+    @objc func updateTextView() {
+        textView.text = calculator.expression
+    }
+    
+    @objc func errorDividedByZero() {
+        factorisationErrorMessage(messageError: "Division by Zero impossible: Repeat the operation, please ")
+//        reset()
+        
     }
 }

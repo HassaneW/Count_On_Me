@@ -10,14 +10,25 @@ import Foundation
 
 class CalculatorCountOnMe {
     
-    var expression : String = "0"
-//    {
-//        
-//        didSet {
-//            
-//            }
-//            
-//        }
+    private func notifyErrorDividedByZero() {
+        let notificationName = Notification.Name("ErrorDividedByZero")
+        let notification = Notification(name: notificationName)
+        NotificationCenter.default.post(notification)
+        
+    }
+    
+    private func notify() {
+        let notificationName = Notification.Name("DataUpdated")
+        let notification = Notification(name: notificationName)
+        NotificationCenter.default.post(notification)
+        
+    }
+    
+    var expression : String = "0" {
+        didSet {
+            notify()
+        }
+    }
 
     
     var elements: [String] {
@@ -37,7 +48,14 @@ class CalculatorCountOnMe {
         return expression.contains("/ 0")
     }
     func tappedNumberButton(numberText: String) {
-        
+        if expression == "0" {
+            expression = ""
+            
+        }
+        if expressionHaveResult {
+            expression = ""
+        }
+        expression.append(numberText)
     }
     func tappedOperatorButton(with: String) {
         
@@ -84,6 +102,9 @@ class CalculatorCountOnMe {
         guard let firstElementOperationToReduce = operationsToReduce.first else {
             return "Missing Result"
         }
+        
+        // NumberFormatter : firstElementOperationToReduce
+        
         return firstElementOperationToReduce
     }
 }
