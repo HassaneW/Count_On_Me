@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         // calculator.tappedNumberButton(numberText: numberText)
         
         guard let numberText = sender.title(for: .normal) else { return }
+        
         calculator.tappedNumberButton(numberText: numberText)
         
 //         textView.text = calculator.expression
@@ -56,55 +57,61 @@ class ViewController: UIViewController {
     // operator
     @IBAction func tappedOperatorButton(_ sender: UIButton) {
         
-        // guard let mathOperator = sender.title(for: .normal) else { return }
-        // calculator.tappedOperatorButton(with: mathOperator)
+//         guard let mathOperator = sender.title(for: .normal) else { return }
+//        calculator.tappedOperatorButton(with: mathOperator)
+//
+//        guard calculator.expressionIsCorrect else {
+//            factorisationErrorMessage(messageError: "Enter a correct expression !")
+//            return
+//        }
+//        guard !calculator.expressionHaveResult else {
+//            factorisationErrorMessage(messageError: "Select a number")
+//            return
+//        }
         
-        guard calculator.expressionIsCorrect else {
-            factorisationErrorMessage(messageError: "Enter a correct expression !")
-            return
-        }
-        guard !calculator.expressionHaveResult else {
-            factorisationErrorMessage(messageError: "Select a number")
-            return
-        }
-        sender.isSelected = true
-        switch sender.currentTitle {
-        case "+":
-            textView.text.append(" + ")
-            calculator.expression = textView.text
-        case "-":
-            textView.text.append(" - ")
-            calculator.expression = textView.text
-        case "/":
-            textView.text.append(" / ")
-            calculator.expression = textView.text
-        case "x":
-            textView.text.append(" x ")
-            calculator.expression = textView.text
-        default:
-            break
-        }
+        guard let mathOperator = sender.title(for: .normal) else { return }
+        calculator.tappedOperatorButton(with: mathOperator)
+        
+//        sender.isSelected = true
+//
+//        switch sender.currentTitle {
+//        case "+":
+//            textView.text.append(" + ")
+//            calculator.expression = textView.text
+//        case "-":
+//            textView.text.append(" - ")
+//            calculator.expression = textView.text
+//        case "/":
+//            textView.text.append(" / ")
+//            calculator.expression = textView.text
+//        case "x":
+//            textView.text.append(" x ")
+//            calculator.expression = textView.text
+//        default:
+//            break
+//        }
     }
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         
+         errorDividedByZero()
+         calculator.tappedEqualButton()
         
-        // calculator.tappedEqualButton()
+//        guard !calculator.expressionDividedByZero else {
+//            factorisationErrorMessage(messageError: "Division by Zero impossible: Repeat the operation, please ")
+//            reset()
+//            return
+//        }
+//        guard calculator.expressionIsCorrect else {
+//            factorisationErrorMessage(messageError: "Enter a correct expression !")
+//            return
+//        }
+//        guard calculator.expressionHaveEnoughElement else {
+//            factorisationErrorMessage(messageError: "Not Enough Element !")
+//            return
+//        }
         
-        guard !calculator.expressionDividedByZero else {
-            factorisationErrorMessage(messageError: "Division by Zero impossible: Repeat the operation, please ")
-            reset()
-            return
-        }
-        guard calculator.expressionIsCorrect else {
-            factorisationErrorMessage(messageError: "Enter a correct expression !")
-            return
-        }
-        guard calculator.expressionHaveEnoughElement else {
-            factorisationErrorMessage(messageError: "Not Enough Element !")
-            return
-        }
-        textView.text.append(" = \(calculator.resolveOperation())")
-        calculator.expression = textView.text
+//        textView.text.append(" = \(calculator.resolveOperation())")
+//        calculator.expression = textView.text
     }
     
     
@@ -115,14 +122,13 @@ class ViewController: UIViewController {
         self.present(alertVC, animated: true, completion: nil)
     }
     @IBAction func actionReset(_ sender: UIButton) {
-        // calculator.actionReset()
-           reset()
+        calculator.reset()
        }
-    private func reset() {
-        textView.text.removeAll()
-        textView.text = "0"
-        calculator.expression = textView.text
-    }
+//    func reset() {
+//        textView.text.removeAll()
+//        textView.text = "0"
+//        calculator.expression = textView.text
+//    }
     
     @objc func updateTextView() {
         textView.text = calculator.expression
@@ -130,7 +136,7 @@ class ViewController: UIViewController {
     
     @objc func errorDividedByZero() {
         factorisationErrorMessage(messageError: "Division by Zero impossible: Repeat the operation, please ")
-//        reset()
+        calculator.reset()
         
     }
 }

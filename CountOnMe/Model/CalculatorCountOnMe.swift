@@ -58,17 +58,40 @@ class CalculatorCountOnMe {
         expression.append(numberText)
     }
     func tappedOperatorButton(with: String) {
+        guard expressionIsCorrect else { return }
+        guard !expressionHaveResult else { return }
         
+        switch with {
+        case "+":
+            expression.append(" + ")
+        case "-":
+            expression.append(" - ")
+        case "/":
+            expression.append(" / ")
+        case "x":
+            expression.append(" x ")
+        default:
+            break
+        }
     }
     func tappedEqualButton() {
+        guard !expressionDividedByZero else { return }
+        guard expressionIsCorrect else { return }
+        guard expressionHaveEnoughElement else { return }
         
+        expression.append(" = \(resolveOperation())")
     }
     func reset() {
-        
+        expression.removeAll()
+        expression = "0"
     }
-    func ErrorMessage(messageError: String) {
-        // Affichage du message d'erreur en fonction de la variable calculée
-    }
+//    func ErrorMessage(messageError: String) {
+//        // Affichage du message d'erreur en fonction de la variable calculée
+//
+//        if expressionIsCorrect == false {
+//            print("Enter a correct expression !")
+//        }
+//    }
     func resolveOperation() -> String {
         // Create local copy of operations
         var operationsToReduce = elements
@@ -104,6 +127,8 @@ class CalculatorCountOnMe {
         }
         
         // NumberFormatter : firstElementOperationToReduce
+        
+        
         
         return firstElementOperationToReduce
     }
