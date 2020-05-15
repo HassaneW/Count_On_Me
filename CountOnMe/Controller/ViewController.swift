@@ -26,7 +26,6 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTextView), name: notificationName, object: nil)
         
-        
         NotificationCenter.default.addObserver(self, selector: #selector(errorDividedByZero), name: Notification.Name("ErrorDividedByZero"), object: nil)
         
     }
@@ -93,7 +92,8 @@ class ViewController: UIViewController {
     }
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         
-         errorDividedByZero()
+        
+//         errorDividedByZero()
          calculator.tappedEqualButton()
         
 //        guard !calculator.expressionDividedByZero else {

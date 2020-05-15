@@ -172,94 +172,6 @@ class CountOnMeTests: XCTestCase {
         XCTAssertEqual(calculator.expression, "2 * 1")
     }
     
-    func test_tappedNumberButtonEqualZero() {
-        
-        //        calculator.expression = "12 + 4"
-        //        let result = calculator.expressionHaveResult
-        //        XCTAssertFalse(result)
-        
-        calculator.tappedNumberButton(numberText: "0")
-        XCTAssertFalse(false)
-        
-    }
-    
-    func test_tappedNumberButtonHaveResult() {
-        
-        calculator.tappedNumberButton(numberText: "")
-        
-        XCTAssertFalse(false)
-    }
-    
-//    func tappedNumberButton(numberText: String) {
-//        if expression == "0" {
-//            expression = ""
-//
-//        }
-//        if expressionHaveResult {
-//            expression = ""
-//        }
-//        expression.append(numberText)
-//    }
-    
-    func test_tappedEqualButton() {
-        
-        calculator.expression = "10"
-        
-        calculator.tappedEqualButton()
-        
-        XCTAssertTrue(true)
-    }
-    
-    func test_NottappedEqualButton() {
-        
-        calculator.expression = "12 +"
-        calculator.tappedEqualButton()
-        
-        XCTAssertFalse(false)
-    }
-    
-    func test_NottappedEqualButtonDividedByZero() {
-        
-        calculator.expression = "/ 0"
-        calculator.tappedEqualButton()
-        
-        XCTAssertFalse(false)
-    }
-    
-    func test_NottappedEqualButtonEnoughElement() {
-        
-        calculator.expression = "1"
-        calculator.tappedEqualButton()
-        
-        XCTAssertFalse(false)
-    }
-    
-    func test_NottappedOperatorButtonexpressionIsCorrect() {
-        
-        calculator.tappedOperatorButton(with: "5 +")
-        calculator.tappedOperatorButton(with: "5 -")
-        calculator.tappedOperatorButton(with: "5 /")
-        calculator.tappedOperatorButton(with: "5 x")
-        XCTAssertTrue(true)
-        
-    }
-    
-    func test_NottappedOperatorButtonExpressionHaveResult() {
-        
-        calculator.tappedOperatorButton(with: "5 =")
-        
-        XCTAssertTrue(true)
-        
-    }
-    
-    
-    func test_NottappedOperatorButtonExpressionHaveResultNot() {
-        
-        calculator.tappedOperatorButton(with: "5")
-        
-        XCTAssertFalse(false)
-        
-    }
     
     func testtappedOperatorButton() {
         
@@ -311,10 +223,26 @@ class CountOnMeTests: XCTestCase {
         
     }
     
-    func testBadOperateur() {
-        calculator.expression = "K"
-        calculator.tappedOperatorButton(with: "K")
-        XCTAssertFalse(false)
+    func test_BreakTappedOperator() {
+        
+         calculator.expression = "7"
+        
+        XCTAssertEqual(calculator.expression, "7")
+        calculator.tappedOperatorButton(with: "Z")
+        
+        XCTAssertEqual(calculator.expression, "7")
+    }
+    
+    func test_ReturnTappedOperator() {
+    
+     calculator.expression = "7 +"
+    
+    XCTAssertEqual(calculator.expression, "7 +")
+    
+    calculator.tappedOperatorButton(with: "+")
+    
+    XCTAssertEqual(calculator.expression, "7 +")
+        
     }
     
     func testtappedEqualButton() {
@@ -336,7 +264,16 @@ class CountOnMeTests: XCTestCase {
         
     }
     
-    
+    func test_NottapedNumberButton() {
+        
+        calculator.expression = "12 + 4 = 1"
+        
+
+        calculator.tappedNumberButton(numberText: "2")
+        
+        XCTAssertEqual(calculator.expression, "2")
+        
+    }
 }
 
 

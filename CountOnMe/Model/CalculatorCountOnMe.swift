@@ -27,6 +27,7 @@ class CalculatorCountOnMe {
     var expression : String = "0" {
         didSet {
             notify()
+            
         }
     }
 
@@ -75,7 +76,10 @@ class CalculatorCountOnMe {
         }
     }
     func tappedEqualButton() {
-        guard !expressionDividedByZero else { return }
+        guard !expressionDividedByZero else {
+            notifyErrorDividedByZero()
+            return
+        }
         guard expressionIsCorrect else { return }
         guard expressionHaveEnoughElement else { return }
         
@@ -120,6 +124,13 @@ class CalculatorCountOnMe {
             operationsToReduce.remove(at: operandIndex)
             operationsToReduce.remove(at: operandIndex-1)
             operationsToReduce.remove(at: operandIndex-1)
+            
+            // Formattage avant convertir String
+            // String(format: "%g", result) ->"\(result)"-> Formatage String
+            String(format: "abc%g %s", result, operandIndex)
+            
+            
+            
             operationsToReduce.insert(String(result), at: operandIndex-1)
         }
         guard let firstElementOperationToReduce = operationsToReduce.first else {
@@ -127,6 +138,19 @@ class CalculatorCountOnMe {
         }
         
         // NumberFormatter : firstElementOperationToReduce
+        
+//        let currencyFormatter = NumberFormatter()
+//        currencyFormatter.usesGroupingSeparator = true
+//        currencyFormatter.numberStyle = .currency
+//        // localize to your grouping and decimal separator
+//        currencyFormatter.locale = Locale.current
+//
+//        // We'll force unwrap with the !, if you've got defined data you may need more error checking
+//        let priceString = currencyFormatter.string(from: 9999.99)!
+//        print(priceString) // Displays $9,999.99 in the US locale
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.decimalSeparator = firstElementOperationToReduce
         
         
         
