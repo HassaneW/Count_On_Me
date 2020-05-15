@@ -30,11 +30,11 @@ class CalculatorCountOnMe {
             
         }
     }
-
     
     var elements: [String] {
         return expression.split(separator: " ").map { "\($0)" }
     }
+    
     // Error check computed variables
     var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-" && elements.last != "x" && elements.last != "/"
@@ -58,6 +58,7 @@ class CalculatorCountOnMe {
         }
         expression.append(numberText)
     }
+    
     func tappedOperatorButton(with: String) {
         guard expressionIsCorrect else { return }
         guard !expressionHaveResult else { return }
@@ -75,6 +76,7 @@ class CalculatorCountOnMe {
             break
         }
     }
+    
     func tappedEqualButton() {
         guard !expressionDividedByZero else {
             notifyErrorDividedByZero()
@@ -85,17 +87,12 @@ class CalculatorCountOnMe {
         
         expression.append(" = \(resolveOperation())")
     }
+    
     func reset() {
         expression.removeAll()
         expression = "0"
     }
-//    func ErrorMessage(messageError: String) {
-//        // Affichage du message d'erreur en fonction de la variable calculée
-//
-//        if expressionIsCorrect == false {
-//            print("Enter a correct expression !")
-//        }
-//    }
+    
     func resolveOperation() -> String {
         // Create local copy of operations
         var operationsToReduce = elements
@@ -125,35 +122,13 @@ class CalculatorCountOnMe {
             operationsToReduce.remove(at: operandIndex-1)
             operationsToReduce.remove(at: operandIndex-1)
             
-            // Formattage avant convertir String
-            // String(format: "%g", result) ->"\(result)"-> Formatage String
-//            String(format: "abc%g %s", result, operandIndex)
+            let convertResult = String(format: "%.2f", result)
             
-            
-            
-            operationsToReduce.insert(String(result), at: operandIndex-1)
+            operationsToReduce.insert(String(convertResult), at: operandIndex-1)
         }
         guard let firstElementOperationToReduce = operationsToReduce.first else {
             return "Missing Result"
         }
-        
-        // NumberFormatter : firstElementOperationToReduce
-        
-//        let currencyFormatter = NumberFormatter()
-//        currencyFormatter.usesGroupingSeparator = true
-//        currencyFormatter.numberStyle = .currency
-//        // localize to your grouping and decimal separator
-//        currencyFormatter.locale = Locale.current
-//
-//        // We'll force unwrap with the !, if you've got defined data you may need more error checking
-//        let priceString = currencyFormatter.string(from: 9999.99)!
-//        print(priceString) // Displays $9,999.99 in the US locale
-        
-        let numberFormatter = NumberFormatter()
-        numberFormatter.decimalSeparator = firstElementOperationToReduce
-        
-        
-        
         return firstElementOperationToReduce
     }
 }

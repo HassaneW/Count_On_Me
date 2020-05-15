@@ -97,37 +97,37 @@ class CountOnMeTests: XCTestCase {
         
         calculator.expression = "12 + 4"
         let result = calculator.resolveOperation()
-        XCTAssertEqual(result, "16.0")
+        XCTAssertEqual(result, "16.00")
     }
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnSubstraction() {
         
         calculator.expression = "12 - 4"
         let result = calculator.resolveOperation()
-        XCTAssertEqual(result, "8.0")
+        XCTAssertEqual(result, "8.00")
     }
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnDivision() {
         
         calculator.expression = "12 / 4"
         let result = calculator.resolveOperation()
-        XCTAssertEqual(result, "3.0")
+        XCTAssertEqual(result, "3.00")
     }
     func test_GivenQuedivideTwoNumbers_WhenResolveOperationRuns_ThenReturnTheFiguresAfterTheComma() {
         
         calculator.expression = "12 / 5"
         let result = calculator.resolveOperation()
-        XCTAssertEqual(result, "2.4")
+        XCTAssertEqual(result, "2.40")
     }
     func test_GivenCalculatorExpressionHasMoreThanOnElement_WhenResolveOperationRuns_ThenResolveOperationMakesAnMultiplication() {
         
         calculator.expression = "12 x 4"
         let result = calculator.resolveOperation()
-        XCTAssertEqual(result, "48.0")
+        XCTAssertEqual(result, "48.00")
     }
     func test_GivenIPerformAnOperationWithTwoOperatorsAdditionAndMultiplication_WhenILaunchTheOperation_ThenICalculateTheOperationWithTheMultiplicationFirst() {
         
         calculator.expression = "12 + 4 x 3"
         let result = calculator.resolveOperation()
-        XCTAssertEqual(result, "24.0")
+        XCTAssertEqual(result, "24.00")
     }
     func test_GivenQueIPutABadOperator_WhenILaunchTheOperation_ThenIHaveAnErrorMessage() {
         
@@ -260,7 +260,7 @@ class CountOnMeTests: XCTestCase {
         
         calculator.tappedEqualButton()
         
-        XCTAssertEqual(calculator.expression, "12 + 4 = 16.0")
+        XCTAssertEqual(calculator.expression, "12 + 4 = 16.00")
         
     }
     
