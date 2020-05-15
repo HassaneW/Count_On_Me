@@ -245,7 +245,16 @@ class CountOnMeTests: XCTestCase {
         
     }
     
-    func testtappedEqualButton() {
+    func testReturnTappedOperatorNotOperationHaveResult() {
+        
+        calculator.expression = "7 + 3 ="
+        
+        XCTAssertEqual(calculator.expression, "7 + 3 =")
+        calculator.tappedOperatorButton(with: "+")
+        XCTAssertEqual(calculator.expression, "7 + 3 =")
+    }
+    
+    func test_tappedEqualButton() {
         
         calculator.expression = "12 + 4"
         
@@ -254,6 +263,44 @@ class CountOnMeTests: XCTestCase {
         XCTAssertEqual(calculator.expression, "12 + 4 = 16.0")
         
     }
+    
+    func test_ReturnEqualButtonexpressionIsCorrect() {
+    
+     calculator.expression = "7 +"
+    
+    XCTAssertEqual(calculator.expression, "7 +")
+    
+        calculator.tappedEqualButton()
+    
+    XCTAssertEqual(calculator.expression, "7 +")
+        
+    }
+    
+    func test_ReturnEqualButtonexpressionDividedByZero() {
+    
+     calculator.expression = "5 / 0"
+    
+    XCTAssertEqual(calculator.expression, "5 / 0")
+    
+        calculator.tappedEqualButton()
+    
+    XCTAssertEqual(calculator.expression, "5 / 0")
+        
+    }
+    
+    
+    func test_ReturnEqualButtonexpressionHaveEnoughElement() {
+
+     calculator.expression = "= 3"
+
+    XCTAssertEqual(calculator.expression, "= 3")
+
+        calculator.tappedEqualButton()
+
+    XCTAssertEqual(calculator.expression, "= 3")
+
+    }
+    
     
     func test_reset() {
         calculator.expression = "12 + 4"

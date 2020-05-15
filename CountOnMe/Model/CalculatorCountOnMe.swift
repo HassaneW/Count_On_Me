@@ -127,7 +127,7 @@ class CalculatorCountOnMe {
             
             // Formattage avant convertir String
             // String(format: "%g", result) ->"\(result)"-> Formatage String
-            String(format: "abc%g %s", result, operandIndex)
+//            String(format: "abc%g %s", result, operandIndex)
             
             
             
