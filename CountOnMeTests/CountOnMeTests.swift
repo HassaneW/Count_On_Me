@@ -18,6 +18,7 @@ class CountOnMeTests: XCTestCase {
         
         calculator = CalculatorCountOnMe()
     }
+    
     func testInitialValueElements_GivenCalculExpressionIsEmpty_WhenAddValuesToCalculatorCalculExpression_ThenCalculatorElementReturnsAnArrayOfSeparateElements() {
         
         // Given
@@ -81,12 +82,6 @@ class CountOnMeTests: XCTestCase {
         let result = calculator.expressionHaveResult
         XCTAssertTrue(result)
     }
-    func test_GivenIDivideANumberByZero_WhenResolveOperationRuns_ThenIReturnAnErrorMessage() {
-        
-        calculator.expression = "12 / 0"
-        _ = calculator.expressionDividedByZero
-        XCTAssertTrue(true)
-    }
     func test_GivenCalculatorExpressionIsNotEmpty_WhenResolveOperationRuns_ThenResolveOperationreturnsArrayElement() {
         
         calculator.expression = "23"
@@ -111,7 +106,7 @@ class CountOnMeTests: XCTestCase {
         let result = calculator.resolveOperation()
         XCTAssertEqual(result, "3.00")
     }
-    func test_GivenQuedivideTwoNumbers_WhenResolveOperationRuns_ThenReturnTheFiguresAfterTheComma() {
+    func test_GivenDivideTwoNumbers_WhenResolveOperationRuns_ThenReturnTheFiguresAfterTheComma() {
         
         calculator.expression = "12 / 5"
         let result = calculator.resolveOperation()
@@ -147,180 +142,106 @@ class CountOnMeTests: XCTestCase {
         let result = calculator.resolveOperation()
         XCTAssertEqual(result, "Invalid expression")
     }
-    
-    func test_tappedNumberButtonAddition() {
+    func test_GivenIEnterAnAdditionInTheParameter_WhentappedNumberButton_ThenIAddItToExpression() {
         
         calculator.tappedNumberButton(numberText: "1 + 1")
         XCTAssertEqual(calculator.expression, "1 + 1")
     }
-    
-    func test_tappedNumberButtonSubstraction() {
-
+    func test_GivenIEnterAnSubstractionInTheParameter_WhentappedNumberButton_ThenIAddItToExpression() {
+        
         calculator.tappedNumberButton(numberText: "2 - 1")
         XCTAssertEqual(calculator.expression, "2 - 1")
     }
-    
-    func test_tappedNumberButtonDivision() {
+    func test_GivenIEnterAnDivisionInTheParameter_WhentappedNumberButton_ThenIAddItToExpression() {
         
         calculator.tappedNumberButton(numberText: "2 / 1")
         XCTAssertEqual(calculator.expression, "2 / 1")
     }
-    
-    func test_tappedNumberButtonMultiplication() {
-
+    func test_GivenIEnterAnMultiplicationInTheParameter_WhentappedNumberButton_ThenIAddItToExpression() {
+        
         calculator.tappedNumberButton(numberText: "2 * 1")
         XCTAssertEqual(calculator.expression, "2 * 1")
     }
     
-    
-    func testtappedOperatorButton() {
-        
-        calculator.expression = "7"
-        
-        calculator.tappedOperatorButton(with: "+")
-        
-        XCTAssertEqual(calculator.expression, "7 + ")
-        
-    }
-    
-    func testtappedOperatorButtonAddition() {
-        
-        calculator.expression = "7"
-        
-        calculator.tappedOperatorButton(with: "+")
-        
-        XCTAssertEqual(calculator.expression, "7 + ")
-        
-    }
-    
-    func testtappedOperatorButtonSubstraction() {
-        
-        calculator.expression = "7"
-        
-        calculator.tappedOperatorButton(with: "-")
-        
-        XCTAssertEqual(calculator.expression, "7 - ")
-        
-    }
-    
-    func testtappedOperatorButtonDivision() {
-        
-        calculator.expression = "7"
-        
-        calculator.tappedOperatorButton(with: "/")
-        
-        XCTAssertEqual(calculator.expression, "7 / ")
-        
-    }
-    
-    func testtappedOperatorButtonMultiplication() {
-        
-        calculator.expression = "7"
-        
-        calculator.tappedOperatorButton(with: "x")
-        
-        XCTAssertEqual(calculator.expression, "7 x ")
-        
-    }
-    
-    func test_BreakTappedOperator() {
-        
-         calculator.expression = "7"
-        
-        XCTAssertEqual(calculator.expression, "7")
-        calculator.tappedOperatorButton(with: "Z")
-        
-        XCTAssertEqual(calculator.expression, "7")
-    }
-    
-    func test_ReturnTappedOperator() {
-    
-     calculator.expression = "7 +"
-    
-    XCTAssertEqual(calculator.expression, "7 +")
-    
-    calculator.tappedOperatorButton(with: "+")
-    
-    XCTAssertEqual(calculator.expression, "7 +")
-        
-    }
-    
-    func testReturnTappedOperatorNotOperationHaveResult() {
-        
-        calculator.expression = "7 + 3 ="
-        
-        XCTAssertEqual(calculator.expression, "7 + 3 =")
-        calculator.tappedOperatorButton(with: "+")
-        XCTAssertEqual(calculator.expression, "7 + 3 =")
-    }
-    
-    func test_tappedEqualButton() {
-        
-        calculator.expression = "12 + 4"
-        
-        calculator.tappedEqualButton()
-        
-        XCTAssertEqual(calculator.expression, "12 + 4 = 16.00")
-        
-    }
-    
-    func test_ReturnEqualButtonexpressionIsCorrect() {
-    
-     calculator.expression = "7 +"
-    
-    XCTAssertEqual(calculator.expression, "7 +")
-    
-        calculator.tappedEqualButton()
-    
-    XCTAssertEqual(calculator.expression, "7 +")
-        
-    }
-    
-    func test_ReturnEqualButtonexpressionDividedByZero() {
-    
-     calculator.expression = "5 / 0"
-    
-    XCTAssertEqual(calculator.expression, "5 / 0")
-    
-        calculator.tappedEqualButton()
-    
-    XCTAssertEqual(calculator.expression, "5 / 0")
-        
-    }
-    
-    
-    func test_ReturnEqualButtonexpressionHaveEnoughElement() {
-
-     calculator.expression = "= 3"
-
-    XCTAssertEqual(calculator.expression, "= 3")
-
-        calculator.tappedEqualButton()
-
-    XCTAssertEqual(calculator.expression, "= 3")
-
-    }
-    
-    
-    func test_reset() {
-        calculator.expression = "12 + 4"
-        
-        calculator.reset()
-        
-        XCTAssertEqual(calculator.expression, "0")
-        
-    }
-    
-    func test_NottapedNumberButton() {
+    func test_GivenIEnterAnOperationWithEqual_WhentappedNumberButton_ThenNothingHappens() {
         
         calculator.expression = "12 + 4 = 1"
-        
-
         calculator.tappedNumberButton(numberText: "2")
-        
         XCTAssertEqual(calculator.expression, "2")
-        
     }
+    
+    func test_GivenIEnterAnOperatorAdditionInTheParameter_WhentappedOperatorButton_ThenIAddItToExpression() {
+        
+        calculator.expression = "7"
+        calculator.tappedOperatorButton(with: "+")
+        XCTAssertEqual(calculator.expression, "7 + ")
+    }
+    func test_GivenIEnterAnOperatorSubstractionInTheParameter_WhentappedOperatorButton_ThenIAddItToExpression() {
+        
+        calculator.expression = "7"
+        calculator.tappedOperatorButton(with: "-")
+        XCTAssertEqual(calculator.expression, "7 - ")
+    }
+    func test_GivenIEnterAnOperatorDivisionInTheParameter_WhentappedOperatorButton_ThenIAddItToExpression() {
+        
+        calculator.expression = "7"
+        calculator.tappedOperatorButton(with: "/")
+        XCTAssertEqual(calculator.expression, "7 / ")
+    }
+    func test_GivenIEnterAnOperatorMultiplicationInTheParameter_WhentappedOperatorButton_ThenIAddItToExpression() {
+        
+        calculator.expression = "7"
+        calculator.tappedOperatorButton(with: "x")
+        XCTAssertEqual(calculator.expression, "7 x ")
+    }
+    func test_GivenIEnterOneCharacterInExpression_WhentappedOperatorButton_ThenNothingHappens() {
+        
+        calculator.expression = "7"
+        XCTAssertEqual(calculator.expression, "7")
+        calculator.tappedOperatorButton(with: "Z")
+        XCTAssertEqual(calculator.expression, "7")
+    }
+    func test_GivenIEnterLessThanThreeCharactersInExpression_WhentappedOperatorButton_ThenNothingHappens() {
+        
+        calculator.expression = "7 +"
+        XCTAssertEqual(calculator.expression, "7 +")
+        calculator.tappedOperatorButton(with: "+")
+        XCTAssertEqual(calculator.expression, "7 +")
+    }
+    func test_GivenIEnterAnOperationWithEqual_WhentappedOperatorButton_ThenNothingHappens() {
+        
+        calculator.expression = "7 + 3 ="
+        XCTAssertEqual(calculator.expression, "7 + 3 =")
+        calculator.tappedOperatorButton(with: "+")
+        XCTAssertEqual(calculator.expression, "7 + 3 =")
+    }
+    func test_GivenIEnterAnOperationWithEqual_tappedEqualButton_ThentappedEqualButtonMakesAnAddition()  {
+        
+        calculator.expression = "12 + 4"
+        calculator.tappedEqualButton()
+        XCTAssertEqual(calculator.expression, "12 + 4 = 16.00")
+    }
+    func test_GivenIEnterTwoCharactersInExpression_WhentappedEqualButton_ThenNothingHappens() {
+        
+        calculator.expression = "7 +"
+        XCTAssertEqual(calculator.expression, "7 +")
+        calculator.tappedEqualButton()
+        XCTAssertEqual(calculator.expression, "7 +")
+    }
+    func test_GivenIEnterDividedByZeroInExpression_WhentappedEqualButton_ThenNothingHappens(){
+        
+        calculator.expression = "5 / 0"
+        XCTAssertEqual(calculator.expression, "5 / 0")
+        calculator.tappedEqualButton()
+        XCTAssertEqual(calculator.expression, "5 / 0")
+    }
+    func test_GivenIEnterAnAddition_Whentappedreset_ThenExpressionEqualZero() {
+        
+        calculator.expression = "12 + 4"
+        calculator.reset()
+        XCTAssertEqual(calculator.expression, "0")
+    }
+    
 }
 
 

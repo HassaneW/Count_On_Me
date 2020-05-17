@@ -48,6 +48,7 @@ class CalculatorCountOnMe {
     var expressionDividedByZero : Bool {
         return expression.contains("/ 0")
     }
+    
     func tappedNumberButton(numberText: String) {
         if expression == "0" {
             expression = ""
